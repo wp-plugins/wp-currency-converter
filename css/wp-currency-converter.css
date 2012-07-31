@@ -1,0 +1,11 @@
+.wpcc_tool select {
+	width: 100%;
+}
+
+.wpcc_tool input[type="text"] {
+	min-width: 40%;
+}
+
+#wpcc_converting {
+	display: none;
+}
