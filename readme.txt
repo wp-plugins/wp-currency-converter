@@ -51,5 +51,8 @@ N/A
 
 == Changelog ==
 
+* 1.1 Fixing conversion widget
+ - Ajax bug when user logged out
+
 * 1.0 Initial version
  - Initial commit of WP Currency Converter

@@ -7,7 +7,7 @@
 ** Author: Josh Kohlbach
 ** Author URI: http://www.codemyownroad.com
 ** Plugin URI: http://www.codemyownroad.com/products/wp-currency-converter
-** Version: 1.0
+** Version: 1.1
 *******************************************************************************/
 
 require_once('wpccWidget.php'); // include the widget
@@ -177,3 +177,4 @@ add_action('init', 'wpccInit');
 add_action('admin_init', 'wpccAdminInit');
 add_action('wp_head', 'wpccHead');
 add_action('wp_ajax_wpccAjaxConvert', 'wpccAjaxConvert');
+add_action('wp_ajax_nopriv_wpccAjaxConvert', 'wpccAjaxConvert');
