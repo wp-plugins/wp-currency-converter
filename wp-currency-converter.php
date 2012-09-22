@@ -7,10 +7,11 @@
 ** Author: Josh Kohlbach
 ** Author URI: http://www.codemyownroad.com
 ** Plugin URI: http://www.codemyownroad.com/products/wp-currency-converter
-** Version: 1.1
+** Version: 1.2
 *******************************************************************************/
 
 require_once('wpccWidget.php'); // include the widget
+require_once('wpccShortcode.php'); // include the shortcode
 
 /*******************************************************************************
 ** wpccMenu()
@@ -134,6 +135,27 @@ function wpccAjaxConvert() {
 }
 
 /*******************************************************************************
+** wpccOnActivation()
+**
+** Activate the plugin and load default options
+**
+** @since 1.0
+*******************************************************************************/
+function wpccOnActivation() {
+	require_once('wpccSymbols.php'); // currency symbols for conversions
+	$wpccOptions = get_option('wpccOptions');
+	
+	if (!isset($wpccOptions['from_currencies']) || empty($wpccOptions['from_currencies']))
+		$wpccOptions['from_currencies'] = implode("\n", array_keys($currency));
+	
+	if (!isset($wpccOptions['to_currencies']) || empty($wpccOptions['to_currencies']))
+		$wpccOptions['to_currencies'] = implode("\n", array_keys($currency));
+		
+	update_option('wpccOptions', $wpccOptions);
+		
+}
+
+/*******************************************************************************
 ** wpccInit()
 **
 ** Initialize plugin
@@ -173,6 +195,7 @@ function wpccHead() {
 	}
 }
 
+register_activation_hook(__FILE__, 'wpccOnActivation');
 add_action('init', 'wpccInit');
 add_action('admin_init', 'wpccAdminInit');
 add_action('wp_head', 'wpccHead');

@@ -10,13 +10,13 @@ A widget to provide an ajax currency conversion widget calculator powered by Goo
 
 == Description ==
 
-This plugin adds a widget to allow provide your visitors with a convenient currency converter.
+This plugin adds a currency converter widget to provide your visitors with a convenient on the spot currency conversions powered by Google.
 
 You can add as many currencies as you like. It uses Google's API to get up to date foreign exchange information.
 
 It doesn't require refreshing the page, everything is done via Ajax to provide a seemless user experience.
 
-The perfect addition to your shopping cart page.
+This is the perfect addition to your shopping cart page.
 
 == Installation ==
 
@@ -28,6 +28,9 @@ To install WP Currency Converter:
 To use this plugin, configure your currency lists in the Settings -> WP Currency Converter menu.
 
 Now drag the widget to your desired sidebar and enjoy.
+
+You can also use the Shortcode option, for example:
+[wpcc title="Currency Converter" pretool_paragraph="Try this handy currency converter tool:" from_default=USD to_default=AUD]
 
 Minimal styling is included so you can make it look as fancy as you like and match your shopping cart experience.
 
@@ -50,6 +53,10 @@ N/A
 N/A
 
 == Changelog ==
+
+* 1.2 Adding shortcode
+ - Added shortcode "wpcc"
+ - Added default currency list on activation on plugin activation for new installs
 
 * 1.1 Fixing conversion widget
  - Ajax bug when user logged out
