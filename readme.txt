@@ -44,6 +44,10 @@ Make sure you use the three letter currency acronym as per the <a href="http://e
 
 This plugin uses Google for it's calculations so ensure the currency is one they support.
 
+= Can I add more currencies? =
+
+You can add any currency by it's currency acronym as long as it's in the <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 standard</a> list.
+
 == Screenshots ==
 
 N/A
