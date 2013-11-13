@@ -2,12 +2,12 @@
 /*******************************************************************************
 ** Plugin Name: WP Currency Converter
 **
-** Description: A widget to provide an ajax currency conversion widget calculator powered by Google.
+** Description: An ajax currency conversion widget to let your visitors convert currency amounts on the fly (powered by Google Finance).
 **
 ** Author: Josh Kohlbach
 ** Author URI: http://www.codemyownroad.com
 ** Plugin URI: http://www.codemyownroad.com/products/wp-currency-converter
-** Version: 1.2
+** Version: 1.3
 *******************************************************************************/
 
 require_once('wpccWidget.php'); // include the widget
@@ -108,27 +108,36 @@ function wpccAjaxConvert() {
 		$amount = $amount . '.00';
 	}
 	
-	$url = 'http://www.google.com/ig/calculator?hl=en&q=' . urlencode($amount) . urlencode($currency_from) . '=?' . urlencode($currency_to);
+	// Change to using Google Finance as iGoogle was deactivated on 1st Nov 2013
+	$url = 'https://www.google.com/finance/converter?a=' . urlencode($amount) . '&from=' . urlencode($currency_from) . '&to=' . urlencode($currency_to);
 	
-	if (function_exists('curl_init')) {
-		// Good to go
+	if (function_exists('curl_init')) { // cURL is installed on the server so use this preferably
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		$response = curl_exec($ch);
-		curl_close($ch);
 		
-		if ($response){
-			$response_array[] = explode('"',$response);
-			
-			$output = ereg_replace("[^0-9.]", "", $response_array[0][3]);
-			$output = sprintf("%.2f", $output);
-			echo '<p>Amount (' . $currency_to . '): ' . $currency[$currency_to] . $output . '</p>';
-		} else {
-			echo '<p class="wpcc_error">Error: Currency conversion temporarily not available. Please try again.</p>';
-		}
+		$ua = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.A.B.C Safari/525.13';
+		
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: text/html"));
+		curl_setopt($ch, CURLOPT_USERAGENT, $ua);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_AUTOREFERER, true);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+	
+		$responseString = curl_exec($ch);
+		
+		curl_close($ch);
+	} else { // try using file_get_contents, though this causes some issues on some servers
+		$responseString = file_get_contents($url, true);
+	}
+	
+	preg_match('/([\d\.]+) ' . $currency_to . '/', $responseString, $matches);
+	
+	if (!empty($matches) && isset($matches[1])){
+		$output = sprintf("%.2f", $matches[1]);
+		echo '<p>Amount (' . $currency_to . '): ' . $currency[$currency_to] . $output . '</p>';
 	} else {
-		echo '<p class="wpcc_error">Error: Curl is required for this plugin to work, please enable on your web server.</p>';
+		echo '<p class="wpcc_error">Error: Currency conversion temporarily not available. Please try again.</p>';
 	}
 	
 	exit();

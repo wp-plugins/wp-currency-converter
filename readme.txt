@@ -6,17 +6,17 @@ Requires at least: 3.0
 Tested up to: 3.2
 Stable tag: trunk
 
-A widget to provide an ajax currency conversion widget calculator powered by Google.
+An ajax currency conversion widget to let your visitors convert currency amounts on the fly (powered by Google Finance).
 
 == Description ==
 
-This plugin adds a currency converter widget to provide your visitors with a convenient on the spot currency conversions powered by Google.
+This plugin adds a fancy ajax currency converter widget to provide your visitors with a convenient on the spot currency conversions powered by Google Finance.
 
-You can add as many currencies as you like. It uses Google's API to get up to date foreign exchange information.
+You can add as many currencies as you like. It uses Google Finance to get up to date foreign exchange information.
 
-It doesn't require refreshing the page, everything is done via Ajax to provide a seemless user experience.
+Because it's all ajax powered, it doesn't require your visitors to refresh the page, providing a seemless user experience.
 
-This is the perfect addition to your shopping cart page.
+This is the perfect addition to your shopping cart page if you're looking for a reliable currency conversion widget that works.
 
 == Installation ==
 
@@ -42,11 +42,15 @@ Check your currency lists have data in them in the WP Currency Converter setting
 
 Make sure you use the three letter currency acronym as per the <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 standard</a>
 
-This plugin uses Google for it's calculations so ensure the currency is one they support.
+This plugin uses Google Finance for it's calculations so ensure the currency is one they support.
 
 = Can I add more currencies? =
 
 You can add any currency by it's currency acronym as long as it's in the <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217 standard</a> list.
+
+= I always see the error: "Error: Currency conversion temporarily not available. Please try again." =
+
+It's likely that you're not using a currency code that Google Finance recognises. To check you can try Googling for the currency conversion, eg. 25 AUD to USD (replace with your currency codes).
 
 == Screenshots ==
 
@@ -57,6 +61,11 @@ N/A
 N/A
 
 == Changelog ==
+
+* 1.3 Changing to Google Finance
+- Switching API services from iGoogle to Google Finance (iGoogle was deactivated on 1st Nov 2013)
+- Added more sophisticated curl processing
+- Added backup to use file_get_content in cases where curl isn't available
 
 * 1.2 Adding shortcode
  - Added shortcode "wpcc"
