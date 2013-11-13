@@ -63,9 +63,9 @@ N/A
 == Changelog ==
 
 * 1.3 Changing to Google Finance
-- Switching API services from iGoogle to Google Finance (iGoogle was deactivated on 1st Nov 2013)
-- Added more sophisticated curl processing
-- Added backup to use file_get_content in cases where curl isn't available
+ - Switching API services from iGoogle to Google Finance (iGoogle was deactivated on 1st Nov 2013)
+ - Added more sophisticated curl processing
+ - Added backup to use file_get_content in cases where curl isn't available
 
 * 1.2 Adding shortcode
  - Added shortcode "wpcc"
