@@ -9,7 +9,7 @@ class Widget_WPCC extends WP_Widget {
 	function Widget_WPCC() {
 
 		$widget_ops = array( 
-			'description' => 'Currency conversion tool provided by WP Currency Converter'
+			'description' => __('Currency conversion tool provided by WP Currency Converter', 'wpcc')
 		);
 		
 		$this->WP_Widget( 
@@ -39,20 +39,20 @@ class Widget_WPCC extends WP_Widget {
 		echo '<div>' . (!empty($pretool_paragraph) ? '<p>' . $pretool_paragraph . '</p>' : '');
 		
 		echo '<div class="wpcc_tool">
-		<p><label for="wpcc_currency_from">From:</label><br />
+		<p><label for="wpcc_currency_from">' . __('From', 'wpcc') . ':</label><br />
 		<select name="wpcc_currency_from" id="wpcc_currency_from">
 		' . $from_currency_options . '
 		</select></p>
 		
-		<p><label for="wpcc_currency_to">To:</label><br />
+		<p><label for="wpcc_currency_to">' . __('To', 'wpcc') . ':</label><br />
 		<select name="wpcc_currency_to" id="wpcc_currency_to">
 		' . $to_currency_options . '
 		</select></p>
 		
-		<p><label for="wpcc_currency_amount">Amount:</label><br />
+		<p><label for="wpcc_currency_amount">' . __('Amount', 'wpcc') . ':</label><br />
 		<input type="text" size="4" name="wpcc_currency_amount" id="wpcc_currency_amount" /></p>
 		
-		<p><input type="button" value="Convert" name="wpcc_convert" id="wpcc_convert" />&nbsp;&nbsp;<img src="' . plugins_url('wp-currency-converter/images/converting.gif') . '" alt="" id="wpcc_converting" /></p>
+		<p><input type="button" value="' . __('Convert', 'wpcc') . '" name="wpcc_convert" id="wpcc_convert" />&nbsp;&nbsp;<img src="' . plugins_url('wp-currency-converter/images/converting.gif') . '" alt="" id="wpcc_converting" /></p>
 		<p id="wpcc_results"></p>';
 		
 		echo '</div></div>'; // end widget content
@@ -90,8 +90,8 @@ class Widget_WPCC extends WP_Widget {
 
 		//Defaults
 		$defaults = array(
-			'title' => 'Currency Converter',
-			'pretool_paragraph' => 'Try our free currency converter:',
+			'title' => __('Currency Converter', 'wpcc'),
+			'pretool_paragraph' => __('Try our free currency converter', 'wpcc') . ':',
 			'from_default' => '',
 			'to_default' => ''
 		);
@@ -101,7 +101,7 @@ class Widget_WPCC extends WP_Widget {
 		echo '<p>
 		<label for="' . 
 		$this->get_field_id('title') . 
-		'">Title:</label>
+		'">' . __('Title', 'wpcc') . ':</label>
 		<input type="text" id="' . 
 		$this->get_field_id('title') . 
 		'" name="' . 
@@ -113,7 +113,7 @@ class Widget_WPCC extends WP_Widget {
 		echo '<p>
 		<label for="' . 
 		$this->get_field_id('pretool_paragraph') . 
-		'">Pre-tool Paragraph:</label>
+		'">' . __('Pre-tool Paragraph', 'wpcc') . ':</label>
 		<textarea id="' . 
 		$this->get_field_id('pretool_paragraph') . 
 		'" name="' . 
@@ -124,7 +124,7 @@ class Widget_WPCC extends WP_Widget {
 		echo '<p>
 		<label for="' . 
 		$this->get_field_id('from_default') . 
-		'">Default "From" Currency (eg: USD):</label>
+		'">' . __('Default "From" Currency (eg: USD)', 'wpcc') . ':</label>
 		<input type="text" id="' . 
 		$this->get_field_id('from_default') . 
 		'" name="' . 
@@ -136,7 +136,7 @@ class Widget_WPCC extends WP_Widget {
 		echo '<p>
 		<label for="' . 
 		$this->get_field_id('to_default') . 
-		'">Default "To" Currency (eg: USD):</label>
+		'">' . __('Default "To" Currency (eg: USD)', 'wpcc') . ':</label>
 		<input type="text" id="' . 
 		$this->get_field_id('to_default') . 
 		'" name="' . 

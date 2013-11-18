@@ -11,7 +11,7 @@ function wpccByShortcode($atts) {
     	shortcode_atts(
     		array(
     			'title' => '',
-    			'pretool_paragraph' => 'Currency conversion tool provided by WP Currency Converter',
+    			'pretool_paragraph' => __('Currency conversion tool provided by WP Currency Converter', 'wpcc'),
     			'from_default' => '',
     			'to_default' => ''
     		), 
@@ -31,7 +31,7 @@ function wpccByShortcode($atts) {
         $wp_class = 'WP_Widget_' . ucwords(strtolower($class));
         
         if (!is_a($wp_widget_factory->widgets[$wp_class], 'WP_Widget')) {
-            return '<p>ERROR: WP Currency Converter widget has not been initialized properly.</p>';
+            return '<p>' . __('ERROR: WP Currency Converter widget has not been initialized properly.', 'wpcc') . '</p>';
     	} else {
             $class = $wp_class;
     	}

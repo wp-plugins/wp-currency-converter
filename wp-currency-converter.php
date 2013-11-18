@@ -7,7 +7,8 @@
 ** Author: Josh Kohlbach
 ** Author URI: http://www.codemyownroad.com
 ** Plugin URI: http://www.codemyownroad.com/products/wp-currency-converter
-** Version: 1.3
+** Version: 1.4
+** Text Domain: wpcc
 *******************************************************************************/
 
 require_once('wpccWidget.php'); // include the widget
@@ -71,12 +72,12 @@ function wpccOptions() {
 	
 	<td>
 		<textarea id="wpcc_from_currencies" name="wpccOptions[from_currencies]" rows="20" cols="10">' . $wpccOptions['from_currencies'] . '</textarea>
-		<p><span class="description">One currency code per line<br /><a href="#" id="wpcc_restore_default_from_currencies">Click to restore defaults</a><br /><a href="#" id="wpcc_copy_to_currencies">Copy "To" currencies</a></span></p>
+		<p><span class="description">' . __('One currency code per line', 'wpcc') . '<br /><a href="#" id="wpcc_restore_default_from_currencies">' . __('Click to restore defaults', 'wpcc') . '</a><br /><a href="#" id="wpcc_copy_to_currencies">' . __('Copy "To" currencies', 'wpcc') . '</a></span></p>
 	</td>
 	
 	<td>
 		<textarea id="wpcc_to_currencies" name="wpccOptions[to_currencies]" rows="20" cols="10">' . $wpccOptions['to_currencies'] . '</textarea>
-		<p><span class="description">One currency code per line<br /><a href="#" id="wpcc_restore_default_to_currencies">Click to restore defaults</a><br /><a href="#" id="wpcc_copy_from_currencies">Copy "From" currencies</a></span></p>
+		<p><span class="description">' . __('One currency code per line', 'wpcc') . '<br /><a href="#" id="wpcc_restore_default_to_currencies">' . __('Click to restore defaults', 'wpcc') . '</a><br /><a href="#" id="wpcc_copy_from_currencies">' . __('Copy "From" currencies', 'wpcc') . '</a></span></p>
 	</td>
 	
 	</tr>
@@ -135,9 +136,9 @@ function wpccAjaxConvert() {
 	
 	if (!empty($matches) && isset($matches[1])){
 		$output = sprintf("%.2f", $matches[1]);
-		echo '<p>Amount (' . $currency_to . '): ' . $currency[$currency_to] . $output . '</p>';
+		echo '<p>' . __('Amount', 'wpcc') . ' (' . $currency_to . '): ' . $currency[$currency_to] . $output . '</p>';
 	} else {
-		echo '<p class="wpcc_error">Error: Currency conversion temporarily not available. Please try again.</p>';
+		echo '<p class="wpcc_error">' . __('Error: Currency conversion temporarily not available. Please try again.', 'wpcc') . '</p>';
 	}
 	
 	exit();
@@ -204,6 +205,19 @@ function wpccHead() {
 	}
 }
 
+/*******************************************************************************
+** wpccPluginLoaded()
+**
+** Plugin loaded, do things like load the text domain
+**
+** @since 1.4
+*******************************************************************************/
+function wpccPluginLoaded() {
+	$plugin_dir = basename(dirname(__FILE__));
+	load_plugin_textdomain('wpcc', false, $plugin_dir);
+}
+
+add_action('plugins_loaded', 'wpccPluginLoaded');
 register_activation_hook(__FILE__, 'wpccOnActivation');
 add_action('init', 'wpccInit');
 add_action('admin_init', 'wpccAdminInit');
