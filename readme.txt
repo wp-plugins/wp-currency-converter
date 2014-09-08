@@ -3,7 +3,7 @@ Contributors: jkohlbach
 Donate link: http://www.codemyownroad.com
 Tags: currency conversion, currency converter, currency convert, conversion, currency, widget, currency widget, currency conversion widget, currency converter widget, foreign exchange, forex, forex widget
 Requires at least: 3.0
-Tested up to: 3.7.1
+Tested up to: 4.0
 Stable tag: trunk
 
 An ajax currency conversion widget to let your visitors convert currency amounts on the fly (powered by Google Finance).
